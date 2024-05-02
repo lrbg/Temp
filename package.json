@@ -6,7 +6,9 @@
   "directories": {
     "test": "tests"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@playwright/test": "^1.43.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
