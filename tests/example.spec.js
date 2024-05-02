@@ -25,9 +25,3 @@ test('test', async ({ page }) => {
   await page.getByRole('link', { name: 'Emulation' }).click();
   console.log("algo");
 });
-
-test('test', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-});
