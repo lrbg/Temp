@@ -25,3 +25,5 @@ test('test', async ({ page }) => {
   await page.getByRole('link', { name: 'Emulation' }).click();
   console.log("algo");
 });
+
+console.log("tomala");
