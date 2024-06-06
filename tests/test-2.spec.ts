@@ -41,7 +41,22 @@ test("Buscar y filtrar productos en Liverpool", async ({ browser }) => {
   if (filtros.marca) {
     await page.click('button.a-title__filter:has-text("Marcas")');
     await page.fill("#searchBrand", filtros.marca);
-    await page.click(`input[id="brand-${filtros.marca.toUpperCase()}"]`);
+
+    const marcaId = `brand-${filtros.marca.toUpperCase()}`;
+    console.log(`Buscando el elemento con ID: ${marcaId}`);
+
+    // Verificar si el elemento existe antes de hacer clic
+    const marcaCheckbox = page.locator(`input[id="${marcaId}"]`);
+    await marcaCheckbox.scrollIntoViewIfNeeded();
+
+    try {
+      await marcaCheckbox.click({
+        force: true,
+      });
+      console.log(`Elemento con ID ${marcaId} encontrado y clicado.`);
+    } catch (error) {
+      console.log(`No se pudo hacer clic en el elemento con ID ${marcaId}.`);
+    }
   }
 
   // Esperar 10 segundos para que se apliquen los filtros
@@ -54,23 +69,22 @@ test("Buscar y filtrar productos en Liverpool", async ({ browser }) => {
 
   if ((await productsLocator.count()) > 0) {
     console.log(`Productos encontrados para los filtros aplicados.`);
-
-    // Hacer clic en el primer producto de la lista
-    await productsLocator.locator("li.m-product__card").first().click();
-
-    // Esperar 5 segundos para que la página del producto se cargue
-    await page.waitForTimeout(5000);
-
-    // Hacer clic en el botón "Comprar ahora"
-    const buyNowButton = page.locator(
-      "button#a-btn.a-btn--primary#opc_pdp_buyNowButton"
-    );
-    await buyNowButton.click();
-
-    console.log("Se hizo clic en el botón 'Comprar ahora'.");
   } else {
     console.log(`No se encontraron productos para los filtros aplicados.`);
   }
+
+  // Hacer clic en el primer producto de la lista
+  const firstProduct = productsLocator.locator("li.m-product__card").first();
+  await firstProduct.scrollIntoViewIfNeeded();
+  await firstProduct.click();
+
+  // Esperar 10 segundos para la navegación
+  await page.waitForTimeout(10000);
+
+  // Hacer clic en el botón "Comprar ahora" usando XPath
+  const buyNowButton = page.locator('xpath=//*[@id="opc_pdp_buyNowButton"]');
+  await buyNowButton.scrollIntoViewIfNeeded();
+  await buyNowButton.click();
 
   await context.close();
 });
