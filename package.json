@@ -1,9 +1,11 @@
 {
   "name": "git_tempo",
   "version": "1.0.0",
-<<<<<<< HEAD
-  "description": "",
+  "description": "el temporal",
   "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {},
   "keywords": [],
   "author": "",
@@ -12,19 +14,4 @@
     "@playwright/test": "^1.43.1",
     "@types/node": "^20.12.8"
   }
-=======
-  "description": "el temporal",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.43.1",
-    "@types/node": "^20.12.8"
-  },
-  "scripts": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
->>>>>>> develop
 }
