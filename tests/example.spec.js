@@ -1,12 +1,20 @@
 // @ts-check
+<<<<<<< HEAD
 const { test, expect } = require('@playwright/test');
 
 test('has title', async ({ page }) => {
   await page.goto('https://playwright.dev/');
+=======
+const { test, expect } = require("@playwright/test");
+
+test("has title", async ({ page }) => {
+  await page.goto("https://playwright.dev/");
+>>>>>>> develop
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Playwright/);
 });
+<<<<<<< HEAD
 
 test('get started link', async ({ page }) => {
   await page.goto('https://playwright.dev/');
@@ -24,3 +32,5 @@ test('test', async ({ page }) => {
   await page.getByRole('link', { name: 'Writing tests', exact: true }).click();
   await page.getByRole('link', { name: 'Emulation' }).click();
 });
+=======
+>>>>>>> develop
